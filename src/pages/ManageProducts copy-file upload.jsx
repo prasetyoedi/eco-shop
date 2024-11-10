@@ -5,9 +5,9 @@ import Swal from "sweetalert2";
 
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
-    const [newProduct, setNewProduct] = useState({ name: "", description: "", price: "", imageUrl: "" });
+    const [newProduct, setNewProduct] = useState({ name: "", description: "", price: "", imageFile: null });
     const [editProduct, setEditProduct] = useState(null);
-    const [editModal, setEditModal] = useState({ name: "", description: "", price: "", imageUrl: "" });
+    const [editModal, setEditModal] = useState({ name: "", description: "", price: "", imageFile: null });
     const [showEditModal, setShowEditModal] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
 
@@ -21,8 +21,19 @@ const ManageProducts = () => {
             .catch((error) => console.error("Error fetching products:", error));
     };
 
+    const handleImageUpload = (e, setProduct) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setProduct(prevProduct => ({ ...prevProduct, imageFile: reader.result }));
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleAddProduct = () => {
-        if (!newProduct.name || !newProduct.description || !newProduct.price || !newProduct.imageUrl) {
+        if (!newProduct.name || !newProduct.description || !newProduct.price || !newProduct.imageFile) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -31,11 +42,14 @@ const ManageProducts = () => {
             return;
         }
 
-        axios.post("https://672f3e07229a881691f24a86.mockapi.io/products", newProduct)
+        axios.post("https://672f3e07229a881691f24a86.mockapi.io/products", {
+            ...newProduct,
+            imageUrl: newProduct.imageFile,
+        })
             .then(() => {
                 fetchProducts();
-                setNewProduct({ name: "", description: "", price: "", imageUrl: "" });
-                setShowAddModal(false); 
+                setNewProduct({ name: "", description: "", price: "", imageFile: null });
+                setShowAddModal(false);
                 Swal.fire({
                     icon: 'success',
                     title: 'Produk Ditambahkan!',
@@ -72,7 +86,7 @@ const ManageProducts = () => {
 
     const openEditModal = (product) => {
         setEditProduct(product);
-        setEditModal({ name: product.name, description: product.description, price: product.price, imageUrl: product.imageUrl });
+        setEditModal({ name: product.name, description: product.description, price: product.price, imageFile: product.imageUrl });
         setShowEditModal(true);
     };
 
@@ -81,7 +95,7 @@ const ManageProducts = () => {
     };
 
     const handleEditProduct = () => {
-        if (!editModal.name || !editModal.description || !editModal.price || !editModal.imageUrl) {
+        if (!editModal.name || !editModal.description || !editModal.price || !editModal.imageFile) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -90,7 +104,10 @@ const ManageProducts = () => {
             return;
         }
 
-        axios.put(`https://672f3e07229a881691f24a86.mockapi.io/products/${editProduct.id}`, editModal)
+        axios.put(`https://672f3e07229a881691f24a86.mockapi.io/products/${editProduct.id}`, {
+            ...editModal,
+            imageUrl: editModal.imageFile,
+        })
             .then(() => {
                 fetchProducts();
                 closeEditModal();
@@ -105,7 +122,7 @@ const ManageProducts = () => {
 
     return (
         <div className="container mt-4">
-            <h2 className="mb-4 text-center">Kelola Produk</h2>
+            <h2 className="mb-4">Kelola Produk</h2>
             <button className="btn btn-primary mb-4" onClick={() => setShowAddModal(true)}>Tambah Produk</button>
 
             <table className="table table-striped">
@@ -178,11 +195,9 @@ const ManageProducts = () => {
                                     onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
                                 />
                                 <input
-                                    type="text"
+                                    type="file"
                                     className="form-control mb-2"
-                                    placeholder="URL Gambar"
-                                    value={newProduct.imageUrl}
-                                    onChange={(e) => setNewProduct({ ...newProduct, imageUrl: e.target.value })}
+                                    onChange={(e) => handleImageUpload(e, setNewProduct)}
                                 />
                             </div>
                             <div className="modal-footer">
@@ -229,16 +244,16 @@ const ManageProducts = () => {
                                     onChange={(e) => setEditModal({ ...editModal, price: e.target.value })}
                                 />
                                 <input
-                                    type="text"
+                                    type="file"
                                     className="form-control mb-2"
-                                    placeholder="URL Gambar"
-                                    value={editModal.imageUrl}
-                                    onChange={(e) => setEditModal({ ...editModal, imageUrl: e.target.value })}
+                                    onChange={(e) => handleImageUpload(e, setEditModal)}
                                 />
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" onClick={closeEditModal}>Batal</button>
-                                <button type="button" className="btn btn-primary" onClick={handleEditProduct}>Simpan</button>
+                                <button type="button" className="btn btn-primary" onClick={handleEditProduct}>
+                                    Simpan
+                                </button>
                             </div>
                         </div>
                     </div>

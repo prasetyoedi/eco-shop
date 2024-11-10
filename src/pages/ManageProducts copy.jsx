@@ -5,9 +5,9 @@ import Swal from "sweetalert2";
 
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
-    const [newProduct, setNewProduct] = useState({ name: "", description: "", price: "", imageUrl: "" });
+    const [newProduct, setNewProduct] = useState({ name: "", description: "", price: "" });
     const [editProduct, setEditProduct] = useState(null);
-    const [editModal, setEditModal] = useState({ name: "", description: "", price: "", imageUrl: "" });
+    const [editModal, setEditModal] = useState({ name: "", description: "", price: "" });
     const [showEditModal, setShowEditModal] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
 
@@ -22,7 +22,7 @@ const ManageProducts = () => {
     };
 
     const handleAddProduct = () => {
-        if (!newProduct.name || !newProduct.description || !newProduct.price || !newProduct.imageUrl) {
+        if (!newProduct.name || !newProduct.description || !newProduct.price) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -34,7 +34,7 @@ const ManageProducts = () => {
         axios.post("https://672f3e07229a881691f24a86.mockapi.io/products", newProduct)
             .then(() => {
                 fetchProducts();
-                setNewProduct({ name: "", description: "", price: "", imageUrl: "" });
+                setNewProduct({ name: "", description: "", price: "" });
                 setShowAddModal(false); 
                 Swal.fire({
                     icon: 'success',
@@ -72,7 +72,7 @@ const ManageProducts = () => {
 
     const openEditModal = (product) => {
         setEditProduct(product);
-        setEditModal({ name: product.name, description: product.description, price: product.price, imageUrl: product.imageUrl });
+        setEditModal({ name: product.name, description: product.description, price: product.price });
         setShowEditModal(true);
     };
 
@@ -81,7 +81,7 @@ const ManageProducts = () => {
     };
 
     const handleEditProduct = () => {
-        if (!editModal.name || !editModal.description || !editModal.price || !editModal.imageUrl) {
+        if (!editModal.name || !editModal.description || !editModal.price) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -105,13 +105,12 @@ const ManageProducts = () => {
 
     return (
         <div className="container mt-4">
-            <h2 className="mb-4 text-center">Kelola Produk</h2>
+            <h2 className="mb-4">Kelola Produk</h2>
             <button className="btn btn-primary mb-4" onClick={() => setShowAddModal(true)}>Tambah Produk</button>
 
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Gambar</th>
                         <th>Nama Produk</th>
                         <th>Deskripsi</th>
                         <th>Harga</th>
@@ -121,9 +120,6 @@ const ManageProducts = () => {
                 <tbody>
                     {products.map((product) => (
                         <tr key={product.id}>
-                            <td>
-                                <img src={product.imageUrl} alt={product.name} style={{ width: "100px", height: "auto" }} />
-                            </td>
                             <td>{product.name}</td>
                             <td>{product.description}</td>
                             <td>Rp {product.price}</td>
@@ -177,13 +173,6 @@ const ManageProducts = () => {
                                     value={newProduct.price}
                                     onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
                                 />
-                                <input
-                                    type="text"
-                                    className="form-control mb-2"
-                                    placeholder="URL Gambar"
-                                    value={newProduct.imageUrl}
-                                    onChange={(e) => setNewProduct({ ...newProduct, imageUrl: e.target.value })}
-                                />
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" onClick={() => setShowAddModal(false)}>Batal</button>
@@ -228,21 +217,16 @@ const ManageProducts = () => {
                                     value={editModal.price}
                                     onChange={(e) => setEditModal({ ...editModal, price: e.target.value })}
                                 />
-                                <input
-                                    type="text"
-                                    className="form-control mb-2"
-                                    placeholder="URL Gambar"
-                                    value={editModal.imageUrl}
-                                    onChange={(e) => setEditModal({ ...editModal, imageUrl: e.target.value })}
-                                />
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" onClick={closeEditModal}>Batal</button>
-                                <button type="button" className="btn btn-primary" onClick={handleEditProduct}>Simpan</button>
+                                <button type="button" className="btn btn-primary" onClick={handleEditProduct}>
+                                    Simpan Perubahan
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div className="fade show" onClick={closeEditModal}></div>
+                    <div className=" fade show" onClick={closeEditModal}></div>
                 </div>
             )}
         </div>
