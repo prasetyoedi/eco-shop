@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "../components/Footer";
+import WhyOus from "./WhyOus";
 
 const Home = () => {
     return (
@@ -28,6 +29,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <WhyOus />
             <Footer />
         </>
     );
