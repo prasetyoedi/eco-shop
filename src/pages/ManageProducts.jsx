@@ -12,6 +12,30 @@ const ManageProducts = () => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
 
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 2;
+
+    // Calculate current products to show on page
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(products.length / itemsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -122,7 +146,8 @@ const ManageProducts = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {products.map((product) => (
+                                {/* {products.map((product) => ( */}
+                                {currentProducts.map((product) => (
                                     <tr key={product.id}>
                                         <td>
                                             <img src={product.imageUrl} alt={product.name} style={{ width: "100px", height: "auto" }} />
@@ -132,7 +157,7 @@ const ManageProducts = () => {
                                         <td>Rp {product.price}</td>
                                         <td>
                                             <button
-                                                className="btn btn-warning btn-sm me-2"
+                                                className="btn btn-warning btn-sm me-2 mb-2"
                                                 onClick={() => openEditModal(product)}
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -156,6 +181,16 @@ const ManageProducts = () => {
                                 ))}
                             </tbody>
                         </table>
+                    </div>
+                    {/* Pagination controls */}
+                    <div className="d-flex justify-content-center mt-4">
+                        <button className="btn btn-secondary me-2" onClick={handlePrevPage} disabled={currentPage === 1}>
+                            Previous
+                        </button>
+                        <span className="align-self-center">Page {currentPage} of {totalPages}</span>
+                        <button className="btn btn-secondary ms-2" onClick={handleNextPage} disabled={currentPage === totalPages}>
+                            Next
+                        </button>
                     </div>
                     {/* Add Product Modal */}
                     {showAddModal && (
@@ -214,10 +249,11 @@ const ManageProducts = () => {
                             <div className="modal-dialog">
                                 <div className="modal-content">
                                     <div className="modal-header">
-                                        <h5 className="modal-title">Edit Produk</h5>
+                                        <h5 className="modal-title text-center">Edit Produk</h5>
                                         <button type="button" className="btn-close" onClick={closeEditModal}></button>
                                     </div>
                                     <div className="modal-body">
+                                        <p>Nama Produk:</p>
                                         <input
                                             type="text"
                                             className="form-control mb-2"
@@ -225,13 +261,15 @@ const ManageProducts = () => {
                                             value={editModal.name}
                                             onChange={(e) => setEditModal({ ...editModal, name: e.target.value })}
                                         />
-                                        <input
-                                            type="text"
+                                        <p>Deskripsi:</p>
+                                        <textarea
                                             className="form-control mb-2"
                                             placeholder="Deskripsi"
                                             value={editModal.description}
                                             onChange={(e) => setEditModal({ ...editModal, description: e.target.value })}
+                                            rows="8"
                                         />
+                                        <p>Harga:</p>
                                         <input
                                             type="number"
                                             className="form-control mb-2"
@@ -239,6 +277,7 @@ const ManageProducts = () => {
                                             value={editModal.price}
                                             onChange={(e) => setEditModal({ ...editModal, price: e.target.value })}
                                         />
+                                        <p>Gambar:</p>
                                         <input
                                             type="text"
                                             className="form-control mb-2"

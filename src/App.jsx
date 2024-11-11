@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
+import ProductDetail from "./pages/ProductDetail";
 import ManageProducts from "./pages/ManageProducts";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -29,16 +30,13 @@ const App = () => {
                 <Link className="nav-link" to="/manage-products">Kelola Produk</Link>
               </li>
             </ul>
-            {/* <form className="d-flex ms-3">
-              <input className="form-control me-2 border-success" type="search" placeholder="Cari Produk" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Cari</button>
-            </form> */}
           </div>
         </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/manage-products" element={<ManageProducts />} />
       </Routes>
     </Router>

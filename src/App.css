@@ -36,26 +36,6 @@ body {
     height: 52px;
 }
 
-/* .form-control {
-    border-radius: 20px;
-}
-
-.form-control:focus {
-    border-color: #28a745;
-    box-shadow: 0px 0px 5px rgba(40, 167, 69, 0.5);
-}
-
-.btn-outline-success {
-    border-radius: 20px;
-}
-
-.btn-outline-success:hover {
-    color: #fff;
-    background-color: #28a745;
-    border-color: #28a745;
-} */
-
-
 /*  */
 .img-products {
     width: 92%;
@@ -250,5 +230,34 @@ body {
     .why-ous .card {
         margin-left: 40px;
         margin-top: 25px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #007bff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }
