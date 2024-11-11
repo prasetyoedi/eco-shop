@@ -36,7 +36,7 @@ body {
     height: 52px;
 }
 
-/*  */
+/* Products */
 .img-products {
     width: 92%;
     height: 92%;
@@ -62,20 +62,14 @@ body {
     color: #FFF;
 }
 
-/* Product page */
 .product-page {
     background-color: #526E48;
     margin-top: -30px;
     padding-top: 50px;
 }
 
-/* .manage-product {
-    background-color: #526E48;
-    margin-top: -30px;
-    padding-top: 20px;
-} */
 
-/* style home */
+/* home */
 .hero-section {
     background: url('../public/bg-hero1.jpg') no-repeat center center/cover;
     height: 90vh;
@@ -156,6 +150,7 @@ body {
     opacity: 0.7;
 }
 
+/* Whyous */
 .container-whyous {
     margin-top: 94px;
 }
@@ -233,16 +228,7 @@ body {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
+/* animasi loading */
 .spinner {
     border: 8px solid #f3f3f3;
     border-top: 8px solid #007bff;

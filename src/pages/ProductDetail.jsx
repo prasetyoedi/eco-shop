@@ -55,7 +55,7 @@ const ProductDetail = () => {
                     <div className="col-md-8">
                         <h2>{product.name}</h2>
                         <p>{product.description}</p>
-                        <h4 className="text-primary">Rp {product.price}</h4>
+                        <h4 className="text-primary">Rp {product.price},-</h4>
                         <a href="https://api.whatsapp.com/send/?phone=6283134339542&text=Hello! I am interested in your product, ${product.name}."
                             className="btn btn-success mt-3"
                             target="_blank"

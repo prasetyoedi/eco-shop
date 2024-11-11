@@ -138,11 +138,11 @@ const ManageProducts = () => {
                         <table className="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Gambar</th>
-                                    <th>Nama Produk</th>
-                                    <th>Deskripsi</th>
-                                    <th>Harga</th>
-                                    <th>Aksi</th>
+                                    <th width="10%">Gambar</th>
+                                    <th width="20%">Nama Produk</th>
+                                    <th width="50%">Deskripsi</th>
+                                    <th width="10%">Harga</th>
+                                    <th width="10%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -157,7 +157,7 @@ const ManageProducts = () => {
                                         <td>Rp {product.price}</td>
                                         <td>
                                             <button
-                                                className="btn btn-warning btn-sm me-2 mb-2"
+                                                className="btn btn-warning btn-sm me-2"
                                                 onClick={() => openEditModal(product)}
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -182,7 +182,7 @@ const ManageProducts = () => {
                             </tbody>
                         </table>
                     </div>
-                    {/* Pagination controls */}
+
                     <div className="d-flex justify-content-center mt-4">
                         <button className="btn btn-secondary me-2" onClick={handlePrevPage} disabled={currentPage === 1}>
                             Previous
@@ -192,7 +192,7 @@ const ManageProducts = () => {
                             Next
                         </button>
                     </div>
-                    {/* Add Product Modal */}
+
                     {showAddModal && (
                         <div className="modal fade show" style={{ display: "block" }} tabIndex="-1">
                             <div className="modal-dialog">
@@ -243,7 +243,6 @@ const ManageProducts = () => {
                         </div>
                     )}
 
-                    {/* Edit Modal */}
                     {showEditModal && (
                         <div className="modal fade show" style={{ display: "block" }} tabIndex="-1">
                             <div className="modal-dialog">
