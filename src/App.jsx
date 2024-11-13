@@ -4,7 +4,9 @@ import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import ProductDetail from "./pages/ProductDetail";
 import ManageProducts from "./pages/ManageProducts";
+import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -16,7 +18,15 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductPage />} />
         <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/manage-products" element={<ManageProducts />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/manage-products"
+          element={
+            <ProtectedRoute>
+              <ManageProducts />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
