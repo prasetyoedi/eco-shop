@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "../components/Footer";
 import WhyOus from "./WhyOus";
+import Chatbot from "../components/Chatbot";
 
 const Home = () => {
     return (
@@ -23,6 +24,7 @@ const Home = () => {
                 </div>
             </div>
             <WhyOus />
+            <Chatbot />
             <Footer />
         </>
     );
