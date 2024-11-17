@@ -10,9 +10,7 @@ export default function Footer() {
                     <div className='col-md-6'>
                         <img src="/logo.png" alt="Logo Eco Shop" className='logo' />
                         <p className='mt-3'>
-                            Eco Shop is your trusted destination for premium, eco-friendly products.
-                            We're committed to delivering a holistic approach to wellness,
-                            harnessing nature's power to support a healthier, more sustainable lifestyle.
+                            Eco Shop adalah tujuan tepercaya Anda untuk produk premium yang ramah lingkungan. Kami berkomitmen untuk memberikan pendekatan holistik terhadap kesehatan, memanfaatkan kekuatan alam untuk mendukung gaya hidup yang lebih sehat dan lebih berkelanjutan.
                         </p>
                         <div className='pb-5'>
                             <img src="/sosmed/fb.svg" alt="icon facebook" className='me-3' />

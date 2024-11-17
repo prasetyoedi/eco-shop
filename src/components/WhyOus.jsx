@@ -4,7 +4,7 @@ export default function WhyOus() {
     return (
         <>
             <div className='container container-whyous why-ous pb-5'>
-                <h1 className='text-center mb-5'>Why Choose</h1>
+                <h1 className='text-center mb-5 fst-italic'>Why Choose</h1>
                 <div className='row '>
                     <div className='card col-md-3 col-10 mx-auto'>
                         <div className="d-flex justify-content-center">
