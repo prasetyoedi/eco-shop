@@ -28,7 +28,6 @@ const ProductDetail = () => {
                 <div className="spinner"></div>
                 <span className="ms-3">Loading ...</span>
             </div>
-
         </div>;
     }
 
@@ -43,7 +42,7 @@ const ProductDetail = () => {
 
     return (
         <>
-            <div className="container my-5">
+            <div className="container my-5 produk-detail">
                 <div className="row">
                     <div className="col-md-4">
                         <img
@@ -55,9 +54,9 @@ const ProductDetail = () => {
                     <div className="col-md-8">
                         <h2>{product.name}</h2>
                         <p>{product.description}</p>
-                        <h4 className="text-primary">Rp {product.price},-</h4>
+                        <h4 className="text-danger">Rp {product.price},-</h4>
                         <a href="https://api.whatsapp.com/send/?phone=6283134339542&text=Hello! I am interested in your product, ${product.name}."
-                            className="btn btn-success mt-3"
+                            className="btn-buy mt-3"
                             target="_blank"
                             rel="noopener noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" fill="white" className="me-2">

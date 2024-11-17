@@ -21,7 +21,6 @@ export default function About() {
                             <p>
                                 “Menjadi platform terdepan untuk kehidupan berkelanjutan, menawarkan produk ramah lingkungan dan membina komunitas yang memperjuangkan konsumsi yang sadar dan pengelolaan lingkungan”
                             </p>
-
                             <p className='fw-bold mt-5 mb-3 text-center'>
                                 Misi Kami
                             </p>

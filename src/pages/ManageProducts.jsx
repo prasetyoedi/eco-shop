@@ -131,11 +131,11 @@ const ManageProducts = () => {
     return (
         <>
             <div className="manage-product pb-5">
-                <div className="container mt-4">
+                <div className="container">
                     <h2 className="mb-4 text-center">Kelola Produk</h2>
-                    <button className="btn btn-primary mb-4" onClick={() => setShowAddModal(true)}>Tambah Produk</button>
+                    <button className="btn-tambah mb-4" onClick={() => setShowAddModal(true)}>Tambah Produk</button>
                     <div className="table-responsive">
-                        <table className="table table-striped">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th width="10%">Gambar</th>
@@ -184,11 +184,11 @@ const ManageProducts = () => {
                     </div>
 
                     <div className="d-flex justify-content-center mt-4">
-                        <button className="btn btn-secondary me-2" onClick={handlePrevPage} disabled={currentPage === 1}>
+                        <button className="btn btn-warning me-2" onClick={handlePrevPage} disabled={currentPage === 1}>
                             Previous
                         </button>
                         <span className="align-self-center">Page {currentPage} of {totalPages}</span>
-                        <button className="btn btn-secondary ms-2" onClick={handleNextPage} disabled={currentPage === totalPages}>
+                        <button className="btn btn-warning ms-2" onClick={handleNextPage} disabled={currentPage === totalPages}>
                             Next
                         </button>
                     </div>
@@ -239,7 +239,7 @@ const ManageProducts = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className=" fade show" onClick={() => setShowAddModal(false)}></div>
+                            <div className="fade show" onClick={() => setShowAddModal(false)}></div>
                         </div>
                     )}
 
