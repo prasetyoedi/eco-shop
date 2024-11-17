@@ -61,6 +61,7 @@ body {
     border-radius: 8px;
     background: var(--Light-Green-600, #1ED017);
     color: #FFF;
+    text-decoration: none;
 }
 
 .product-page {
