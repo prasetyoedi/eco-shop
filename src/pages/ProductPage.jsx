@@ -28,7 +28,7 @@ const ProductPage = () => {
                                         <img src={product.imageUrl} alt={product.name} className="img-products" />
                                         <h6 className="card-title">{product.name}</h6>
                                         <p className="card-text">Harga: Rp {product.price}</p>
-                                        <Link to={`/product/${product.id}`} className="btn-buy text-decoration-none">View Details</Link>
+                                        <Link to={`/product/${product.id}`} className="btn-buy text-decoration-none">Lihat Detail Produk</Link>
                                     </div>
                                 </div>
                             </div>

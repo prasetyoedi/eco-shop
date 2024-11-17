@@ -21,20 +21,21 @@ export default function Chatbot() {
     async function handlePromptSubmit() {
         if (!inputUser.trim()) return;
         setLoading(true);
-
+    
         // Tambahkan pesan pengguna ke riwayat
         setChatHistory((prev) => [...prev, { sender: 'user', message: inputUser }]);
         setInputUser('');
         try {
             let customResponse = '';
-
+    
             if (/apa itu ecoshop/i.test(inputUser)) {
+                // Jika pengguna menanyakan tentang Ecoshop
                 customResponse = 'EcoShop adalah platform e-commerce yang menjual produk-produk ramah lingkungan. Produk yang dijual terbuat dari bahan-bahan berkelanjutan, dapat didaur ulang, atau dirancang untuk mengurangi dampak negatif terhadap lingkungan.';
             } else {
                 const productMatch = keyword.find(p =>
                     new RegExp(p.name, 'i').test(inputUser)
                 );
-
+    
                 if (productMatch) {
                     customResponse = `Aku merekomendasikan kamu ${productMatch.description}. Yang memiliki manfaat ${productMatch.benefits}. Dengan harga Rp ${productMatch.price},-.`;
                 } else if (/rekomendasi/i.test(inputUser)) {
@@ -55,6 +56,8 @@ export default function Chatbot() {
                     customResponse = result.response.text;
                 }
             }
+    
+            // Tambahkan respons bot ke riwayat
             setChatHistory((prev) => [...prev, { sender: 'bot', message: customResponse }]);
         } catch (error) {
             console.error(error);
@@ -63,7 +66,7 @@ export default function Chatbot() {
             setLoading(false);
         }
     }
-
+    
 
     function handleReset() {
         setChatHistory([]);

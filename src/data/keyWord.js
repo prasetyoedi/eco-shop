@@ -16,5 +16,5 @@ export const keyword = [
         description: "Eco Laundry Powder, deterjen cuci ramah lingkungan yang efektif. Dibuat dengan bahan alami, produk ini bebas dari bahan kimia berbahaya dan pewarna sintetis",
         benefits: "membersihkan pakaian tanpa merusak alam",
         price: 75000
-    }
+    },
 ];
